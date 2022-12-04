@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width" />
+<title>Raspberry Pi LED Control</title>
+</head>
+    <body>
+      <center><h1>Live Sensor Data</h1>     
+      </center>
+      <p><span id="date"></span></p>
+      <p>Latitude <span id="lat">0</span></p>
+      <p>Longitude <span id="long">0</span></p>
+    </body>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function(){
+      setInterval(function(){
+        $.ajax({
+          type:'GET',
+          url: "{% url 'getGps' %}",
+          success: function(response){
+
+            $('span#lat').html(response.lat);
+            $('span#long').html(response.long);
+            $('span#date').html(response.datetime);
+          },
+          error: function(response){
+            alert("No data found!");
+          }
+        }); 
+      }, 1000)
+    })
+  </script>
+</html>

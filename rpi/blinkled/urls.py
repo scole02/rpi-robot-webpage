@@ -3,4 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('sensors', views.sensors, name='sensors'),
+    path('ajax/getGps', views.getGps, name='getGps'),
 ]
