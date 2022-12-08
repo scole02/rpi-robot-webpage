@@ -1,20 +1,10 @@
 #!/usr/bin/python
-
 import board
-import digitalio
 import busio
-
-print("Hello blinka!")
-# Try to great a Digital input
-pin = digitalio.DigitalInOut(board.D4)
-print("Digital IO ok!")
-
-# Try to create an I2C device
+import adafruit_bno055
 i2c = busio.I2C(board.SCL, board.SDA)
-print("I2C ok!")
+sensor = adafruit_bno055.BNO055_I2C(i2c)
 
-# Try to create an SPI device
-spi = busio.SPI(board.SCLK, board.MOSI, board.MISO)
-print("SPI ok!")
-
-print("done!")
+print(f'Temperature: {sensor.temperature} degrees Celsius')
+print(f'Acceleration: {sensor.acceleration} ')
+print(f'Gyroscope: {sensor.gyro} ')

@@ -35,10 +35,15 @@ def main():
         if dur < 0 or dur > 4:
             print("duration too short or too long")
             return
-        for i in range(2):
-            d1.set_drive(i, 0, level)
-            d2.set_drive(i, 0, level)
-            d3.set_drive(i, 0, level)
+        # left
+        d1.set_drive(1, 0, level)
+        d2.set_drive(0, 0, level)
+        d3.set_drive(0, 0, level)
+        
+        # right
+        d1.set_drive(0, 0, level * -1)
+        d2.set_drive(1, 0, level * -1)
+        d3.set_drive(1, 0, level * -1)
         
         time.sleep(dur)
         
